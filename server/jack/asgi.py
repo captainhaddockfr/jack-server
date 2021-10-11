@@ -1,5 +1,5 @@
 """
-ASGI config for compil project.
+ASGI config for Jack project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'compil.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'jack.settings')
 
 application = get_asgi_application()

@@ -7,7 +7,7 @@ Jack is Spotify queue collaborate project. The goal is to allow a user to give a
 ### Prerequisites 
 * Docker and Docker-compose
 
-#### Quickstart 
+### Quickstart 
 ```
 docker-compose up -d 
 ```

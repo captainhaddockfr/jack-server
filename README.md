@@ -12,3 +12,5 @@ Jack is Spotify queue collaborate project. The goal is to allow a user to give a
 docker-compose up -d 
 ```
 * Open browser on [http://localhost:8000](http://localhost:8000)
+
+## How it works 

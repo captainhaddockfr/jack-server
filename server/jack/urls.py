@@ -19,6 +19,8 @@ from api import views
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
+router.register(r'room', views.RoomViewSet)
+router.register(r'searchtrack', views.SearchTrackViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

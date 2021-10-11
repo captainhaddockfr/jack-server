@@ -1,7 +1,7 @@
 from django.http import response
 from django.contrib.auth.models import User, Group
 from django.db import IntegrityError
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions, status
 from api.permissions import PostOrIsOwner
 from rest_framework.permissions import IsAuthenticated
 from api.serializers import UserSerializer, RoomWriteSerializer, TrackSerializer
@@ -50,10 +50,22 @@ class RoomViewSet(viewsets.ModelViewSet):
             user = UserRoom.objects.get(username=request.user.username)
             room = Room.objects.create(name=request.data["name"], access_code= str(uuid.uuid4()), spotify_token=request.data["spotify_token"], user=user)
             return response.HttpResponse(response.JsonResponse({"room": {"name": room.name, "access_code": room.access_code}}), content_type='application/json') 
-        except IntegrityError: 
-            return response.HttpResponseBadRequest(response.JsonResponse({"message": "integrity_error"}), content_type='application/json') 
+        except IntegrityError as err: 
+            return response.HttpResponseBadRequest(response.JsonResponse({"message": str(err)}), content_type='application/json') 
         except: 
             return response.HttpResponseBadRequest(response.JsonResponse({"message": "unknown_error"}), content_type='application/json') 
+
+    def destroy(self, request, *args, **kwargs):
+        try:
+            instance = self.get_object()
+            if instance.user.username == request.user.username :
+                self.perform_destroy(instance)
+                return response.HttpResponse()
+            else :
+                return response.HttpResponseForbidden()
+        except BaseException as err:
+            return response.HttpResponseNotFound(response.JsonResponse({"message": str(err)}), content_type='application/json')
+        
 
 class SearchTrackViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Track.objects.all()

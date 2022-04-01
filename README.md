@@ -28,7 +28,7 @@ docker-compose up -d
 
 ## How it works 
 ### Get Spotify Access Token :
-* Download [https://github.com/spotify/web-api-auth-examples](Spotify test projet)
+* Download [Spotify test projet](https://github.com/spotify/web-api-auth-examples)
 * Install dependencies `npm i`
 * In `authorization_code` subfolder, run project : `node app.js`
 * Open browser on [http://localhost:8888](http://localhost:8888) and connect with your Spotify Account

@@ -18,7 +18,7 @@ class RoomReadSerializer(serializers.HyperlinkedModelSerializer):
         model = Room
         fields = ['url', 'name', 'access_code']
 
-class TrackSerializer(serializers.HyperlinkedModelSerializer):
+class TrackSerializer(serializers.ModelSerializer):
     class Meta:
         model = Track
-        fields = ['url', 'title', 'artist', 'duration', 'picture_url', 'uri']
+        fields = ['title', 'artist', 'duration', 'picture_url', 'uri']

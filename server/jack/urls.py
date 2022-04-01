@@ -16,15 +16,17 @@ Including another URLconf
 from django.urls import include, path
 from rest_framework import routers
 from api import views
+from api.views import SearchTrackAPIView, AddTrackToQueueAPIView
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'room', views.RoomViewSet)
-router.register(r'searchtrack', views.SearchTrackViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     path('', include(router.urls)),
+    path('searchtrack/', SearchTrackAPIView.as_view()),
+    path('addtracktoqueue/', AddTrackToQueueAPIView.as_view()),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

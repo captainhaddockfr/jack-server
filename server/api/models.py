@@ -11,6 +11,7 @@ class Room(models.Model):
     name = models.CharField(max_length=50)
     access_code = models.CharField(max_length=200, unique=True)
     spotify_token = models.CharField(max_length=200)
+    refresh_token = models.CharField(max_length=200)
     user = models.OneToOneField(UserRoom, on_delete=CASCADE)
 
 class Track(models.Model):
